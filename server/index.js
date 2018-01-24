@@ -14,7 +14,7 @@ import {start} from'./socket/dockerCnn.js'
 import {runAsync} from'./socket/runAsync.js'
 import {runiDep} from'./socket/runiDep.js'
 
-var admin = require("firebase-admin");
+//var admin = require("firebase-admin");
 var serviceAccount = require("./key.json");
 var db;
 
