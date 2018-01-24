@@ -7,11 +7,12 @@ WORKDIR /usr/src/app
 # Install app dependencies
 RUN apk update && apk upgrade && apk add git
 
-ONBUILD COPY . /usr/src/app/
-ONBUILD RUN npm install
+COPY . /usr/src/app/
+# Install required Node Packages
+RUN npm install
 
 # Build app
-ONBUILD RUN npm run build
+RUN npm run build
 
 ENV HOST 0.0.0.0
 EXPOSE 3001

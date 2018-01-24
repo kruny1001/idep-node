@@ -90,8 +90,6 @@
 import axios from '~/plugins/axios'
 import io from 'socket.io-client';
 
-import {grpc, Code, Metadata} from "grpc-web-client";
-
 export default {
   async asyncData () {
     let dockerData = await axios.get('api/listContainers')

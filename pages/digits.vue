@@ -7,7 +7,7 @@
     <button @click="init()"> Start </button>
     <button @click="getImg()">GET Img</button>
     <pre class="f7 code">{{decoded.msg}}</pre>
-    <img src="http://localhost:3001/api/getTSNEImg2"/>
+    <img src="http://0.0.0.0:3001/api/getTSNEImg2"/>
     <ul>
       <li v-for="item in imgs">
         <img src="/api/getTSNEImg">
