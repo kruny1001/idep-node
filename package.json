@@ -19,8 +19,6 @@
     "dockerode": "2.5.3",
     "express": "^4.15.3",
     "firebase": "^4.9.0",
-    // "firebase-admin": "^5.8.1",
-    "monaco-editor": "0.10.1",
     "nuxt": "^1.0.0-rc3",
     "socket.io": "2.0.4",
     "socket.io-client": "2.0.4",
@@ -28,9 +26,7 @@
     "swiper": "4.0.7",
     "tachyons": "^4.9.1",
     "vue-awesome-swiper": "3.1.0",
-    "vue-swiper": "0.5.0",
-    "wsrpc": "^1.2.1",
-    "zerorpc": "^0.9.7"
+    "vue-swiper": "0.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
