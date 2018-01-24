@@ -1,0 +1,48 @@
+{
+  "name": "idep-node",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "Eun Woo Son <eunwoo.son@sdstate.edu>",
+  "private": true,
+  "scripts": {
+    "dev": "backpack dev",
+    "build": "nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "precommit": "npm run lint",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "async": "2.6.0",
+    "axios": "^0.16.2",
+    "bluebird": "3.5.1",
+    "cross-env": "^5.0.1",
+    "dockerode": "2.5.3",
+    "express": "^4.15.3",
+    "firebase": "^4.9.0",
+    "firebase-admin": "^5.8.1",
+    "grpc-web-client": "^0.3.1",
+    "monaco-editor": "0.10.1",
+    "nuxt": "^1.0.0-rc3",
+    "socket.io": "2.0.4",
+    "socket.io-client": "2.0.4",
+    "source-map-support": "^0.4.15",
+    "swiper": "4.0.7",
+    "tachyons": "^4.9.1",
+    "vue-awesome-swiper": "3.1.0",
+    "vue-swiper": "0.5.0",
+    "wsrpc": "^1.2.1",
+    "zerorpc": "^0.9.7"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "backpack-core": "^0.4.1",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}

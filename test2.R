@@ -1,0 +1,1 @@
+coef(summary(obj))
