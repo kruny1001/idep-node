@@ -1,0 +1,13 @@
+version: '2'
+services:
+  nodeapp:
+    build: .
+    restart: always 
+    image: kruny1001/idep-node
+    volumes: 
+       - /var/run:/var/run
+    ports:
+       - "8000:3001"
+    expose:
+      - "3838"
+    command: ["npm", "start"]
