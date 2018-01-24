@@ -97,7 +97,7 @@ export default {
   },
   mounted() {     
     var vm = this;
-    vm.socket = io.connect('http://localhost:3001')
+    vm.socket = io.connect('http://bioinformatics.sdstate.edu:8000')
     vm.socket.on('connect', function(data){
       vm.socket.emit('join', 'Hello World from client');
     })
@@ -148,7 +148,7 @@ export default {
         vm.socket.emit('getDocker', 'Hello World from client');
     },
     logInformation(){
-      const socket = io('http://localhost:3001');
+      const socket = io('http://bioinformatics.sdstate.edu:8000');
     },
     runScript(id){
       var vm = this;
