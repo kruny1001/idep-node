@@ -158,7 +158,7 @@
       orgRef.once('value', function(snap) {
         vm.orgs = snap.val()
       })
-      vm.socket = io.connect('http://0.0.0.0:3001')
+      vm.socket = io.connect('http://bioinformatics.sdstate.edu:8000')
       vm.socket.on('connect', function(data) {
         vm.socket.emit('join', 'Hello World from client');
       })

@@ -23,7 +23,7 @@ export function runAsync(io) {
 
     socket.on('getDocker-compute', function (data) {
       console.log(data);
-      axios.get('http://0.0.0.0:3001/api/createContainer').then(function (response) {
+      axios.get('http://bioinformatics.sdstate.edu:8000/api/createContainer').then(function (response) {
         ref.push(response.data)
         console.log(response.data)
         socket.emit('docker_result_msg', {

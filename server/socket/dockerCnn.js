@@ -21,7 +21,7 @@ export function start(io) {
     });
     socket.on('getDocker', function (data) {
       console.log(data);
-      axios.get('http://0.0.0.0:3001/api/createContainer2').then(function (response) {
+      axios.get('http://bioinformatics.sdstate.edu:8000/api/createContainer2').then(function (response) {
         console.log(response.data)
         socket.emit('docker_result_msg', {
           msg: "success"
