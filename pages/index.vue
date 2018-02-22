@@ -1,11 +1,8 @@
 <template>
   <section class="main">
-  <!--<img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />-->
-    <h1 class="f2 code title underline">iDEP Gene Analyzer Tool</h1>
-    <img src="http://www.sciencemag.org/sites/default/files/styles/article_main_large/public/images/13%20June%202014.jpg?itok=DPBy5nLZ">
-    <p class="center pa6 code"> 
-      We are bla bla bla 
-    </p>
+  <!-- <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" /> -->
+    <h1 class="f2 code title underline">iDEP ver 2.0.12</h1>
+    
     <article class="cf">
       <div style="" class="fl w-100 bg-near-white">
         <div class="bg-near-white pa5 ma2" style="max-width: 750px; margin: 0px auto">
@@ -27,8 +24,8 @@
             <button @click="connR(container.Id)">Connect R Session</button>
           </li>
         </ul>
-        <pre style="width:150px; height:20px; position:absolute; top:0; right: 43px;"> {{msg}}</pre>
-        <pre style="width:150px; height:20px; position:absolute; top:25px; right: 43px;"> {{msg_docker}}</pre>
+        <!-- <pre style="f6 width:150px; height:20px; position:absolute; top:0; right: 43px;"> {{msg}}</pre>
+        <pre style="f6 width:150px; height:20px; position:absolute; top:25px; right: 43px;"> {{msg_docker}}</pre> -->
       </div>
       </div>
     </article>
@@ -42,7 +39,7 @@
     </div>
 
     <article v-if="crntContainerID!=''" class="cf">
-      <div style="position: relative; height:500px;" class="fl w-50 bg-near-white tc">
+      <div style="position: relative;" class="fl w-50 bg-near-white tc">
         <h1>R Code</h1>
         <textarea class="tracked code" style="font-size:11px; 
           max-width: 100%; padding:15px; color:white; 
@@ -50,7 +47,7 @@
           v-model="cmd" placeholder="Type R code"></textarea>
         <button style="position: absolute;top: 10px;right: 10px;font-wegiht:bold; font-size:18px;" @click="runScriptR()"> Run R</button>
       </div>
-      <div style="height:500px;" class="fl w-50 bg-light-gray tc">
+      <div style="" class="fl w-50 bg-light-gray tc">
         <h1>R console</h1>
         <pre id="output" class="tracked code" 
         style="text-align: left; max-width: 100%; padding:15px; 
@@ -62,6 +59,7 @@
     </article>
 
     <br/>
+
     <div class="pa3">
       <pre>
         Docker workflow
@@ -82,22 +80,24 @@
         <li> One user must have at most 5 docker containers </li>
       </ul>
     </div>
-    
   </section>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
 import io from 'socket.io-client';
-
+import Header from '~/components/Header'
 export default {
+  components: {
+    'main-header': Header
+  },
   async asyncData () {
     let dockerData = await axios.get('api/listContainers')
     return { containers: dockerData.data}
   },
   mounted() {     
     var vm = this;
-    vm.socket = io.connect('http://bioinformatics.sdstate.edu:8000')
+    vm.socket = io.connect(vm.host)
     vm.socket.on('connect', function(data){
       vm.socket.emit('join', 'Hello World from client');
     })
@@ -112,7 +112,6 @@ export default {
       vm.msg_docker_result += data.msg.replace(/^\s+|\s+$/g,'') + "\n";
       var pre = document.querySelector('#output')
       setTimeout(function(){ pre.scrollTo(0, document.querySelector('#output').scrollHeight) }, 500);
-      
     })
   },
   head () {
@@ -121,9 +120,13 @@ export default {
     }
   },
   data() {
-    return{ crntContainerID:"", decoded: "", cnn:false, msg:"", msg_docker:{}, socket:{}, msg_docker_result:"", cmd:""}
+    return{ 
+      //host: 'http://bioinformatics.sdstate.edu:8000',
+      host: 'localhost:3001',
+      crntContainerID:"", decoded: "", cnn:false, msg:"", msg_docker:{}, socket:{}, msg_docker_result:"", cmd:""}
   },
   methods: {
+
     connR(id){
       var vm = this;
       vm.crntContainerID = id
@@ -148,7 +151,8 @@ export default {
         vm.socket.emit('getDocker', 'Hello World from client');
     },
     logInformation(){
-      const socket = io('http://bioinformatics.sdstate.edu:8000');
+      var vm = this;
+      const socket = io(vm.host);
     },
     runScript(id){
       var vm = this;

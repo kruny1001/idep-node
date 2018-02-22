@@ -2,6 +2,9 @@ import axios from 'axios'
 var Docker = require('dockerode');
 var socket = process.env.DOCKER_SOCKET || '/var/run/docker.sock';
 
+const host = process.env.HOST || '127.0.0.1'
+const port = process.env.PORT || 3001
+
 var docker = new Docker({
   socketPath: socket
 });
@@ -21,7 +24,7 @@ export function start(io) {
     });
     socket.on('getDocker', function (data) {
       console.log(data);
-      axios.get('http://bioinformatics.sdstate.edu:8000/api/createContainer2').then(function (response) {
+      axios.get('api/createContainer2').then(function (response) {
         console.log(response.data)
         socket.emit('docker_result_msg', {
           msg: "success"

@@ -28,3 +28,9 @@ https://auth0.com/blog/docker-dashboard-with-react-typescript-socketio/
 
 Plot save from console
 https://stackoverflow.com/questions/29583849/r-saving-a-plot-in-an-object
+
+How to terminate R session
+http://astrostatistics.psu.edu/su07/R/library/base/html/quit.html
+
+
+https://www.andrewheiss.com/blog/2016/12/08/save-base-graphics-as-pseudo-objects-in-r/

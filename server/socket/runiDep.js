@@ -1,6 +1,5 @@
 ////////// Stream Need to be fixed
 
-
 import axios from 'axios'
 var fs = require('fs');
 const async = require("async")
@@ -25,7 +24,7 @@ export function runiDep(io) {
     });
     socket.on('getDocker-compute-idep', function (data) {
       console.log(data);
-      axios.get('http://bioinformatics.sdstate.edu:8000/api/createContainer').then(function (response) {
+      axios.get('api/createContainer').then(function (response) {
         ref.push(response.data)
         console.log(response.data)
         socket.emit('docker_result_msg', {
@@ -57,10 +56,7 @@ export function runiDep(io) {
             socket.emit('docker_result_msg', {
                 msg: result
             });
-            // output += result;
-            // console.log(result)
             next()
-            // resolve(result);  // Moved the resolve to the handler, which fires at the end of the stream
         };
 
         var myStream2 = new Writable();

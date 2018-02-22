@@ -1,6 +1,5 @@
 <template>
   <section >
-    <!-- <header-menu></header-menu> -->
     <div class="content--container">
       <div class="sidebar--container ph4 bg-black-80 white pt4 flex justify-between flex-column">
         <div class="sidebar--content">
@@ -56,17 +55,11 @@
               <a href="./about" class="intro--button pv3 ph4 mv3 ba bw1 b--black-80 black-80 font-smoothing-hover hover-bg-black-80 hover-white 
                 fw6 dib karla f6 ttu tracked no-underline">Read more <span class="pl2">→</span></a>
             </div>
-            <p class="code mt2"> This is a proof of concept of computing containers</p>
           </div>
-          <div class="code"> Drop Down Menu</div>
-
-          <nuxt-child/>
-
-          
+                  
           <pre v-if="isAailableLog" id="output" class="tracked code" 
             style="    line-height: 14px; margin: 8px auto;font-size: 11px; text-align: left; padding:15px; color:white; overflow-y: auto !important; 
               font-weight: bold; width:100%; background: #353131; height:300px;">{{msg_docker_result}}</pre>
-          
           <hr/>
           <h3 class="underline  intro--headline karla fw6 measure-narrow lh-title pb3"> Load Data </h3>
           <div class="w-100">
@@ -76,14 +69,14 @@
           <h3 class="underline intro--headline karla fw6 measure-narrow lh-title pb3"> Pre Process </h3>
           <div class="left--expand w-100 center">
             <div class="ma1" v-for="i in imagePre" >
-              <img class="center mw-80" alt="night sky over water" :src='i' />
+              <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i' />
             </div>
           </div>
           
           <h3 class="underline  intro--headline karla fw6 measure-narrow lh-title pb3"> Heatmap </h3>
           <div class="left--expand w-100 center">
             <div class="ma1" v-for="i in imageHeat" >
-              <img class="center mw-80" alt="night sky over water" :src='i'>
+              <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i'>
             </div>
           </div>
           
@@ -94,10 +87,9 @@
           <h3 class="underline  intro--headline karla fw6 measure-narrow lh-title pb3"> PCA </h3>
           <div class="left--expand w-100 center">
             <div class="ma1"  v-for="i in imagePca" >
-              <img class="center mw-80" alt="night sky over water" :src='i'>
+              <img style="max-width: 400px" class="center mw-80" alt="night sky over water" :src='i'>
             </div>
           </div>
-          
         </div>
         <report></report>
       </div>
@@ -112,6 +104,9 @@
   import axios from '~/plugins/axios'
   import io from 'socket.io-client';
   import firebase from 'firebase'
+
+  import Header from '~/components/Header'
+
   var fb
   let config = {
     apiKey: "AIzaSyBO4CCJzL7U9pFSEv-9ETqVt5dzMNKiwk4",
@@ -130,7 +125,8 @@
   export default {
     components: {
       'header-menu' : HeaderMenu,
-      'report' : Report
+      'report' : Report,
+      'main-header': Header
     },
     async asyncData() {
       let dockerData = await axios.get('api/listContainers')
@@ -147,18 +143,20 @@
         decoded: '',
         socket: {},
         containers: [],
-        msg_docker_result: ''
+        msg_docker_result: '',
+        //host: 'http://bioinformatics.sdstate.edu:8000',
+        host: 'localhost:3001',
       }
     },
     mounted() {
       var vm = this;
-      console.log(fb)
-      // var orgRef = fb.ref("idep/users/kruny1001/test")
-      var orgRef = fb.ref("idep/users/kruny1001")
-      orgRef.once('value', function(snap) {
-        vm.orgs = snap.val()
-      })
-      vm.socket = io.connect('http://bioinformatics.sdstate.edu:8000')
+      // console.log(fb)
+      // // var orgRef = fb.ref("idep/users/kruny1001/test")
+      // var orgRef = fb.ref("idep/users/kruny1001")
+      // orgRef.once('value', function(snap) {
+      //   vm.orgs = snap.val()
+      // })
+      vm.socket = io.connect(vm.host)
       vm.socket.on('connect', function(data) {
         vm.socket.emit('join', 'Hello World from client');
       })

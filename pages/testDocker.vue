@@ -70,7 +70,9 @@ export default {
         decoded: '',
         socket:{},
         containers: [],
-        msg_docker_result:''
+        msg_docker_result:'',
+        //host: 'http://bioinformatics.sdstate.edu:8000',
+        host: 'localhost:3001',
       }
     },
     mounted() {
@@ -82,7 +84,7 @@ export default {
             vm.orgs = snap.val()
         })
 
-        vm.socket = io.connect('http://bioinformatics.sdstate.edu:8000')
+        vm.socket = io.connect(vm.host)
         vm.socket.on('connect', function(data){
             vm.socket.emit('join', 'Hello World from client');
         })

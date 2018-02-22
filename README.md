@@ -2,6 +2,10 @@
 
 > compute container web application 
 
+This is a proof of concept. We applied the docker container as compute engine. Each task can be done by docker container scheduler. Result can be retrieve by web soceket. Client side can talk with server via web socket. 
+
+
+
 ## Build Setup
 
 ``` bash

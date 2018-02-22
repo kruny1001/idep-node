@@ -1,6 +1,6 @@
 <template>
   <section >
-    <!-- <header-menu></header-menu> -->
+    <header-menu></header-menu>
     <div class="content--container">
       <div class="sidebar--container pb2 ph4 bg-black-80 white pt4 flex justify-between flex-column">
         <div class="sidebar--content">
@@ -79,6 +79,12 @@
         </div>
       </div>
       <div class="main--container ph3" >
+         <ul class="code f3 wd-10 center list flex">
+            <li class="link mh3"><a href="/"> Home </a></li>
+            <li class="link mh3"><a href="/idepTest"> idep summary</a></li>
+            <li class="link mh3"><a href="/about"> idep about</a></li>
+            <li class="link mh3"><a href="/comic"> idep comic</a></li>
+          </ul>
           <h3> This is bla bla bla </h3>
           <p> bla bla bla </p>
       </div>

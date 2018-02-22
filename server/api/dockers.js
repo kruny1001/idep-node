@@ -82,19 +82,6 @@ router.get('/createContainer2', function (req, res, next) {
     })
 })
 
-// router.get('/listenContainer', function(req, res, next){
-//   var container = docker.getContainer('e8ef1bb6bd3e');
-//   var attach_opts2 = {stream: true, stdin: false, stdout: true, stderr: true};
-
-//   container.attach(attach_opts2, function handler(err, stream) {
-//     container.modem.demuxStream(stream, process.stdout, process.stderr);
-//     stream.on('data', function(chunk){
-//       socket.emit('docker_result_msg', {msg:chunk.toString('utf8')});
-//     });
-//   })
-//   res.json({result:"connected"})   
-// })
-
 /* GET listContainer listing. */
 router.get('/listContainers', function (req, res, next) {
   var containerIds = []

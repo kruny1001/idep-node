@@ -13,14 +13,17 @@ var io = require('socket.io')(server)
 import {start} from'./socket/dockerCnn.js'
 import {runAsync} from'./socket/runAsync.js'
 import {runiDep} from'./socket/runiDep.js'
+import {runThw} from'./socket/runThw.js'
+
 
 //var admin = require("firebase-admin");
-var serviceAccount = require("./key.json");
+// var serviceAccount = require("./key.json");
 var db;
 
 start(io);
 runAsync(io);
 runiDep(io);
+runThw(io);
 
 app.set('port', port)
 // Import API Routes

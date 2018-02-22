@@ -1,7 +1,4 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'starter',
     meta: [
@@ -14,38 +11,24 @@ module.exports = {
     ]
   },
   
-  /*
-  ** Global CSS
-  */
   css: ['~/assets/css/main.css', '~/node_modules/tachyons/css/tachyons.min.css', 
     '~/node_modules/swiper/dist/css/swiper.css'],
   
-  /*
-  ** Add axios globally
-  */
   plugins:[
-    { src: '~/plugins/swiper.js', ssr: false },
+    // { src: '~/plugins/swiper.js', ssr: false },
     { src: '~/plugins/fbConn.js', ssr: false },
-
+    // { src: '~/plugins/monaco.js', ssr: false },
     // { src: '~/plugins/axios.js', ssr: false }
   ],
   build: {
-    vendor: ['axios'],
-    /*
-    ** Run ESLINT on save
-    */
-    // extend (config, ctx) {
-    //   if (ctx.isClient) {
-    //     config.module.rules.push({
-    //       enforce: 'pre',
-    //       test: /\.(js|vue)$/,
-    //       loader: 'eslint-loader',
-    //       exclude: /(node_modules)/
-    //     })
-    //   }
-    // }
+    vendor: ['axios', 
+    'firebase'
+    //'vue-monaco'
+  ],
   },
   serverMiddleware: [
     '~/server/api/logger'
-  ]
+  ],
+  router: {
+  }
 }
