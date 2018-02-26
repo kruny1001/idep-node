@@ -8,9 +8,11 @@ services:
        - ./pages:/usr/src/app/pages
        - ./plugins:/usr/src/app/plugins
        - ./server:/usr/src/app/server
-       - /var/run/docker.sock:/var/run/docker.sock # docker api
+       - /var/run/docker.sock:/var/run/docker.sock:ro # docker api
     ports:
-       - "8080:3001"
+       - "80:3001"
+       - "3001:3001"
     expose:
       - "8080"
+      - "3001"
     command: ["npm", "start"]
