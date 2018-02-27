@@ -224,7 +224,8 @@ export default {
       containers: [],
       msg_docker_result: '',
       //host: 'http://bioinformatics.sdstate.edu:8000',
-      host: 'galnb.com:3001',
+      // host: 'galnb.com:3001',
+      host: 'localhost:3001',
     }
   },
   mounted() {
@@ -237,6 +238,7 @@ export default {
     // })
     vm.socket = io.connect(vm.host)
     vm.socket.on('connect', function(data) {
+      
       vm.socket.emit('join', 'Hello World from client');
     })
     vm.socket.on('messages', function(data) {

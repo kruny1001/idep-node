@@ -24,6 +24,7 @@ var attach_opts2 = {
 
 export function runThw(io) {
   io.on('connection', function (socket) {
+    console.log(__dirname)
     socket.on('disconnect', function () {
       console.log('user disconnected-thw');
     })
@@ -36,6 +37,7 @@ export function runThw(io) {
     socket.on('scatterplot-assessment', function (input) {
       console.log(input);
       var outputDir = "code/output/assessment";
+      var codedir = __dirname + "../testFolder/"
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -43,8 +45,8 @@ export function runThw(io) {
         },
         'HostConfig': {
           'Binds': [
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/code/assessment:/usr/local/src/myscripts'
+            codedir + outputDir + ':/usr/local/src/myscripts/output',
+            codedir + 'code/assessment:/usr/local/src/myscripts'
           ]
         }
       }
@@ -204,7 +206,8 @@ export function runThw(io) {
 
     socket.on('loadData-the', function () {
       console.log('loadData-the init')
-      var outputDir = "code/output/thw";
+      var outputDir = "code/output/thw/";
+      var codedir = __dirname + "/../testFolder/"
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -212,11 +215,13 @@ export function runThw(io) {
         },
         'HostConfig': {
           'Binds': [
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/code/thw:/usr/local/src/myscripts'
-          ]
+            '/dockers/idep-node/server/testFolder/code/output/thw' + ':/usr/local/src/myscripts/output',
+            '/dockers/idep-node/server/testFolder/code/thw' + ':/usr/local/src/myscripts'
+          ],
+          AutoRemove: true
         }
       }
+
       var Writable = require('stream').Writable;
       var myStream = new Writable();
       var output = ''
@@ -311,6 +316,7 @@ export function runThw(io) {
     socket.on('productInfo-thw', function (input) {
       console.log(input)
       var outputDir = "code/output/thw";
+      var codedir = __dirname + "/../testFolder/"
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -318,8 +324,8 @@ export function runThw(io) {
         },
         'HostConfig': {
           'Binds': [
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/code/thw:/usr/local/src/myscripts'
+            codedir + outputDir + ':/usr/local/src/myscripts/output',
+            codedir + 'code/assessment:/usr/local/src/myscripts'
           ]
         }
       }
@@ -369,6 +375,7 @@ export function runThw(io) {
       console.log('prdId-thw')
       console.log(input)
       var outputDir = "code/output/thw";
+      var codedir = __dirname + "/../testFolder/"
       const Setting = {
         Tty: true,
         'Volumes': {
@@ -376,8 +383,8 @@ export function runThw(io) {
         },
         'HostConfig': {
           'Binds': [
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/' + outputDir + ':/usr/local/src/myscripts/output',
-            '/Users/kruny1001/Desktop/idep-node/server/testFolder/code/thw:/usr/local/src/myscripts'
+            codedir + outputDir + ':/usr/local/src/myscripts/output',
+            codedir + 'code/assessment:/usr/local/src/myscripts'
           ]
         }
       }
